@@ -4,13 +4,24 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    >
 
     <Button
-        android:id="@+id/start_video_recording_button"
+        android:id="@+id/start_full_screen_video_recording_button"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/start_video_recording"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/start_full_screen_video_recording"
+        />
+
+    <Button
+        android:id="@+id/start_embedded_video_recording_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/start_embedded_video_recording"
         />
 
 </LinearLayout>

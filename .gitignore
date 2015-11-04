@@ -30,3 +30,6 @@ proguard/
 
 #Crashlytics
 crashlytics-build.properties
+
+#API Keys
+app/src/main/java/com/jiahaoliuliu/simpleziggeointegration/APIKeys.java

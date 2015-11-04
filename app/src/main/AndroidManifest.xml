@@ -16,6 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".EmbeddedVideoRecorderActivity"
+            android:label="@string/title_activity_embedded_video_recorder" >
+        </activity>
     </application>
 
 </manifest>

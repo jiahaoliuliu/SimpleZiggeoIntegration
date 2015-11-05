@@ -58,12 +58,10 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.start_full_screen_video_recording_button:
-                    mShouldSubscribeToEvents = true;
                     mZiggeo.createVideo(mContext, MAX_TIME_ALLOWED);
                     break;
                 case R.id.start_embedded_video_recording_button:
-                    mShouldSubscribeToEvents = false;
-//                    BusProvider.getInstance().unregister(this);
+                    BusProvider.getInstance().unregister(this);
                     Intent startEmbeddedVideoRecorderActivityIntent = new Intent(mContext, EmbeddedVideoRecorderActivity.class);
                     startActivity(startEmbeddedVideoRecorderActivityIntent);
                     break;

@@ -10,4 +10,6 @@
     <string name="embedded_recorder">Start recording</string>
     <string name="error_create_video">There was an error with the video. Could you try it again later?</string>
     <string name="video_uploaded_correctly">The video has been uploaded correctly</string>
+    <string name="max_duration_reached">"Max duration reached of video "</string>
+    <string name="video_created_successfully">The video was successfully created</string>
 </resources>

@@ -71,13 +71,13 @@ public class MainActivity extends AppCompatActivity {
 
     @Subscribe
     public void onVideoSent(VideoSentEvent event) {
-        Log.v(TAG, "The video has been correctly sent " + event.getVideoToken());
+        Log.v(TAG, "The video has been correctly sent with token " + event.getVideoToken());
         Toast.makeText(mContext, R.string.video_uploaded_correctly, Toast.LENGTH_LONG).show();
     }
 
     @Subscribe
     public void onCreateVideoError(CreateVideoErrorEvent event) {
-        Log.e(TAG, "Error creating video");
+        Log.e(TAG, getString(R.string.error_create_video));
         Toast.makeText(mContext, R.string.error_create_video, Toast.LENGTH_LONG).show();
     }
 }

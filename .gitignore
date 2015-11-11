@@ -31,5 +31,9 @@ proguard/
 #Crashlytics
 crashlytics-build.properties
 
-#API Keys
+# API Keys
 app/src/main/java/com/jiahaoliuliu/simpleziggeointegration/APIKeys.java
+
+# Android Studio 
+# Lets not deal with annoying IML versioning. 
+*.iml

@@ -1,1 +1,1 @@
-include ':app', ':ziggeo-sdk-v0.0.1'
+include ':app', 'ziggeo-sdk-v0.55.0'

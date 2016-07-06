@@ -1,0 +1,2 @@
+configurations.maybeCreate("default")
+artifacts.add("default", file('ziggeo-sdk-v0.55.0.aar'))

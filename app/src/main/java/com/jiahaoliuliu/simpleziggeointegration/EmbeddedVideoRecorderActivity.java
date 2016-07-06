@@ -10,6 +10,12 @@ import android.widget.Toast;
 
 //import com.google.common.eventbus.Subscribe;
 import com.ziggeo.androidsdk.Ziggeo;
+
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 //import com.ziggeo.androidsdk.eventbus.BusProvider;
 //import com.ziggeo.androidsdk.eventbus.events.CreateVideoErrorEvent;
 //import com.ziggeo.androidsdk.eventbus.events.VideoSentEvent;
@@ -30,28 +36,19 @@ public class EmbeddedVideoRecorderActivity extends AppCompatActivity {
 
         // Initialize the variables
         mContext = this;
-//        mZiggeo = new Ziggeo(APIKeys.ZIGGEO_APPLICATION_TOKEN);
-//        BusProvider.getInstance().register(this);
-//
-//        // Embed the fragment
-//        mZiggeo.attachRecorder(getFragmentManager(), R.id.content_frame_layout, MainActivity.MAX_TIME_ALLOWED);
-    }
+        mZiggeo = new Ziggeo(APIKeys.ZIGGEO_API_KEY);
+        long maxVideoDutaion = 1000 * 60 * 5; //for ex. 5 mins.
 
-//    @Subscribe
-//    public void onVideoSent(VideoSentEvent event) {
-//        Log.v(TAG, "The video has been correctly sent " + event.getVideoToken());
-//        Toast.makeText(mContext, R.string.video_uploaded_correctly, Toast.LENGTH_LONG).show();
-//    }
-//
-//    @Subscribe
-//    public void onCreateVideoError(CreateVideoErrorEvent event) {
-//        Log.e(TAG, "Error creating video");
-//        Toast.makeText(mContext, R.string.error_create_video, Toast.LENGTH_LONG).show();
-//    }
+        mZiggeo.attachRecorder(getFragmentManager(), R.id.content_frame_layout, MainActivity.MAX_TIME_ALLOWED, new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                Log.e(TAG, "Video embedded failed ", e);
+            }
 
-    @Override
-    protected void onDestroy() {
-//        BusProvider.getInstance().unregister(this);
-        super.onDestroy();
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                Log.v(TAG, "Video correctly uploaded " + response);
+            }
+        });
     }
 }

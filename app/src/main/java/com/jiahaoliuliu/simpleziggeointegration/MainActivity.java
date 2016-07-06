@@ -13,6 +13,12 @@ import android.widget.Toast;
 
 //import com.google.common.eventbus.Subscribe;
 import com.ziggeo.androidsdk.Ziggeo;
+import com.ziggeo.androidsdk.net.rest.ProgressCallback;
+
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Response;
 //import com.ziggeo.androidsdk.eventbus.BusProvider;
 //import com.ziggeo.androidsdk.eventbus.events.CreateVideoErrorEvent;
 //import com.ziggeo.androidsdk.eventbus.events.VideoSentEvent;
@@ -30,10 +36,7 @@ public class MainActivity extends AppCompatActivity {
     // Others
     private Context mContext;
     private Ziggeo mZiggeo;
-
-    //      Record the state if this activity should subscribe to event on resume
-    //      The event receiver is only used for full screen video recorder
-    private boolean mShouldSubscribeToEvents;
+    long maxVideoDuration = 1000 * 60 * 5; //for ex. 5 mins.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Initialize Ziggeo
         mContext = this;
-//        mZiggeo = new Ziggeo(APIKeys.ZIGGEO_APPLICATION_TOKEN);
-//        BusProvider.getInstance().register(this);
+        mZiggeo = new Ziggeo(APIKeys.ZIGGEO_API_KEY);
 
         // Link the views
         mStartFullScreenVideoRecordingButton = (Button)findViewById(R.id.start_full_screen_video_recording_button);
@@ -58,10 +60,24 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.start_full_screen_video_recording_button:
-//                    mZiggeo.createVideo(mContext, MAX_TIME_ALLOWED);
+                    mZiggeo.createVideo(mContext, maxVideoDuration, new ProgressCallback() {
+                        @Override
+                        public void onProgressUpdate(int i) {
+                            Log.v(TAG, "Video progress " + i);
+                        }
+
+                        @Override
+                        public void onFailure(Call call, IOException e) {
+                            Log.e(TAG, "Video failed ", e);
+                        }
+
+                        @Override
+                        public void onResponse(Call call, Response response) throws IOException {
+                            Log.v(TAG, "Video response " + response);
+                        }
+                    });
                     break;
                 case R.id.start_embedded_video_recording_button:
-//                    BusProvider.getInstance().unregister(this);
                     Intent startEmbeddedVideoRecorderActivityIntent = new Intent(mContext, EmbeddedVideoRecorderActivity.class);
                     startActivity(startEmbeddedVideoRecorderActivityIntent);
                     break;

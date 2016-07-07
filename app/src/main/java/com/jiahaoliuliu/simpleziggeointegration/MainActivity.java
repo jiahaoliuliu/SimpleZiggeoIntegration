@@ -14,6 +14,7 @@ import com.ziggeo.androidsdk.net.rest.ProgressCallback;
 import java.io.IOException;
 
 import okhttp3.Call;
+import okhttp3.Callback;
 import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
@@ -52,20 +53,15 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.start_full_screen_video_recording_button:
-                    mZiggeo.createVideo(mContext, MAX_TIME_ALLOWED, new ProgressCallback() {
-                        @Override
-                        public void onProgressUpdate(int i) {
-                            Log.v(TAG, "Video progress " + i);
-                        }
-
+                    mZiggeo.createVideo(mContext, MAX_TIME_ALLOWED, new Callback() {
                         @Override
                         public void onFailure(Call call, IOException e) {
-                            Log.e(TAG, "Video failed ", e);
+                            Log.e(TAG, "Error creating the video ", e);
                         }
 
                         @Override
                         public void onResponse(Call call, Response response) throws IOException {
-                            Log.v(TAG, "Video response " + response);
+                            Log.v(TAG, "Response " + response);
                         }
                     });
                     break;

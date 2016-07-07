@@ -4,11 +4,7 @@ import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.Toast;
 
-//import com.google.common.eventbus.Subscribe;
 import com.ziggeo.androidsdk.Ziggeo;
 
 import java.io.IOException;
@@ -16,9 +12,6 @@ import java.io.IOException;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
-//import com.ziggeo.androidsdk.eventbus.BusProvider;
-//import com.ziggeo.androidsdk.eventbus.events.CreateVideoErrorEvent;
-//import com.ziggeo.androidsdk.eventbus.events.VideoSentEvent;
 
 public class EmbeddedVideoRecorderActivity extends AppCompatActivity {
 

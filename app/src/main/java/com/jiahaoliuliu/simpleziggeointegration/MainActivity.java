@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
     // Others
     private Context mContext;
     private Ziggeo mZiggeo;
-    long maxVideoDuration = 1000 * 60 * 5; //for ex. 5 mins.
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.start_full_screen_video_recording_button:
-                    mZiggeo.createVideo(mContext, maxVideoDuration, new ProgressCallback() {
+                    mZiggeo.createVideo(mContext, MAX_TIME_ALLOWED, new ProgressCallback() {
                         @Override
                         public void onProgressUpdate(int i) {
                             Log.v(TAG, "Video progress " + i);
